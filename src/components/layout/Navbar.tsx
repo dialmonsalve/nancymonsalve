@@ -15,7 +15,10 @@ export const Navbar = () => {
   return (
     <nav className="nav" >
 
-      <div className="nav__container-img--link" >
+      <div>
+
+        <Link className="nav__container-img--link" href="/" >
+          
         <Image
           src='/logo.svg'
           alt="logo"
@@ -23,6 +26,7 @@ export const Navbar = () => {
           priority
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
+        </Link>
       </div>
 
 

@@ -2,13 +2,17 @@
 @use '../abstract/mixins' as m;
 
 
-
-
 .nav {
   align-content: center;
   align-items: center;
-  background-image: radial-gradient(#00ff0050, #0b761bae);
+  // background-image: radial-gradient(#00ff0050, #0b761bae);
   // background-image: radial-gradient(#ff00c350, #ff00c3ae);
+  // background-image: radial-gradient(v.$color-tertiary-light, v.$color-tertiary-dark);
+  // background-image: radial-gradient(v.$color-primary-light, v.$color-primary-dark);
+  // background-image: radial-gradient(v.$color-secondary-light, v.$color-secondary-dark);
+  // background-image: radial-gradient(v.$color-blue-2, v.$color-blue-3);
+  background-image: radial-gradient(v.$color-yellow-2, v.$color-yellow-3);
+  // background-image: radial-gradient(v.$color-red-1, v.$color-red-2);
   display: flex;
   justify-content: space-between;
   padding: 1rem 5rem;
@@ -42,7 +46,7 @@
       padding: 2rem 1.5rem;
       position: absolute;
       top: 0;
-      transition: all .3s;
+      transition: all .4s;
       width: 100vw;
       z-index: 1;
     }
@@ -64,7 +68,7 @@
         padding: 1rem;
         position: absolute;
         text-align: center;
-        transition: all .3s;
+        transition: all .4s;
         width: 100%;
         z-index: 2;
       }
@@ -152,7 +156,6 @@
   @include m.responsive(phone) {
     transform: translateY(0);
     backdrop-filter: blur(4px);
-    animation: modalAnimationDown 1s cubic-bezier(0.42, 0, 0.58, 5);
   }
 
 }
