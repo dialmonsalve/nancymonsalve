@@ -1,0 +1,191 @@
+@use '../abstract/variables' as v;
+@use '../abstract/mixins' as m;
+
+
+
+
+.nav {
+  align-content: center;
+  align-items: center;
+  background-image: radial-gradient(#00ff0050, #0b761bae);
+  // background-image: radial-gradient(#ff00c350, #ff00c3ae);
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 5rem;
+
+  @include m.responsive(phone) {
+    margin-top: 5.7rem;
+    justify-content: center;
+    padding:0;
+  }
+
+  &__container-img {
+    &--link {
+      display: block;
+      height: 14rem;
+      position: relative;
+      width: 25rem;
+    }
+  }
+
+  &__list {
+    display: flex;
+    gap: 1rem;
+    transition: all .8s cubic-bezier(1, -0.55, 0.265, 1.55);
+
+    @include m.responsive(phone) {
+      align-items: center;
+      border: transparent;
+      flex-direction: column;
+      height: 100vh;
+      left: 0;
+      padding: 2rem 1.5rem;
+      position: absolute;
+      top: 0;
+      transition: all .3s;
+      width: 100vw;
+      z-index: 1;
+    }
+
+    &--menu {
+      display: none;
+
+      @include m.responsive(phone) {
+        background-image: linear-gradient(135deg,
+            v.$color-black-2 0%,
+            v.$color-black-3 50%,
+            v.$color-black-4 100%);
+        color: v.$color-white;
+        display: flex;
+        font-size: 1.6rem;
+        font-weight: 900;
+        gap: 1rem;
+        justify-content: center;
+        padding: 1rem;
+        position: absolute;
+        text-align: center;
+        transition: all .3s;
+        width: 100%;
+        z-index: 2;
+      }
+    }
+  }
+
+  &__item {
+    position: relative;
+    margin: 0;
+    flex: 1;
+
+    @include m.responsive(phone) {
+      background-color: v.$color-gray-2;
+      flex: 0;
+      transform: translateY(200px);
+      width: 100%;
+    }
+  }
+
+  &__link,
+  &__link:link,
+  &__link:visited {
+    border-radius: .5rem;
+    color: v.$color-white;
+    display: flex;
+    font-size: v.$font-size;
+    font-weight: 600;
+    padding: 1rem 1.5rem;
+
+    @include m.responsive(phone) {
+      color: v.$color-primary;
+      display: block;
+      text-align: center;
+    }
+  }
+}
+
+.active {
+  background-color: rgba(79, 2, 146, 0.849);
+  color: v.$color-white;
+
+  &:hover::before,
+  &:hover::after {
+    transform: scaleY(0) translateX(0);
+    width: 0;
+  }
+}
+
+.inactive {
+
+  &::before,
+  &::after {
+    background-color: v.$color-primary;
+    content: "";
+    height: 100%;
+    position: absolute;
+    top: 0;
+    transition: transform .2s,
+      width .2s cubic-bezier(1, 0, 0, 1) .2s,
+      background-color .1s;
+    width: 3px;
+    z-index: -1;
+  }
+
+  &:hover::before,
+  &:hover::after {
+    transform: scaleY(1) translateX(0);
+    width: 50%;
+  }
+
+  &::before {
+    left: 0;
+    border-radius: .5rem 0 0 .5rem;
+    transform: scaleY(0) translateX(-100%);
+  }
+
+  &::after {
+    right: 0;
+    border-radius: 0 .5rem .5rem 0;
+    transform: scaleY(0) translateX(100%);
+  }
+}
+
+.openNavbar {
+  @include m.responsive(phone) {
+    transform: translateY(0);
+    backdrop-filter: blur(4px);
+    animation: modalAnimationDown 1s cubic-bezier(0.42, 0, 0.58, 5);
+  }
+
+}
+
+.closeNavbar {
+  @include m.responsive(phone) {
+    transform: translateY(-95%);
+  }
+}
+
+.menuOpen {
+  @include m.responsive(phone) {
+    top: 100%;
+    transform: translateY(-100%);
+  }
+}
+
+.menuClose {
+  @include m.responsive(phone) {
+    top: 0%;
+  }
+}
+
+@keyframes modalAnimationDown {
+  0% {
+    transform: translateY(-30%);
+  }
+
+  50% {
+    transform: translateY(-30px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
